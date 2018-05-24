@@ -1,0 +1,43 @@
+package com.example.android.kinematicscalculator;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+
+public class DetermineRelevantVariablesActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_determine_relevant_variables);
+
+        Button nextButton = findViewById(R.id.nextRelevantVariablesButton);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //determine which variables the app needs to get data from
+                CheckBox checkBox = findViewById(R.id.vo);
+                if(checkBox.isChecked())
+                    CalculatorData.getKinematicVariable("vo").setGetValue(true);
+                checkBox = findViewById(R.id.v);
+                if(checkBox.isChecked())
+                    CalculatorData.getKinematicVariable("v").setGetValue(true);
+                checkBox = findViewById(R.id.a);
+                if(checkBox.isChecked())
+                    CalculatorData.getKinematicVariable("a").setGetValue(true);
+                checkBox = findViewById(R.id.t);
+                if(checkBox.isChecked())
+                    CalculatorData.getKinematicVariable("t").setGetValue(true);
+                checkBox = findViewById(R.id.x);
+                if(checkBox.isChecked())
+                    CalculatorData.getKinematicVariable("s").setGetValue(true);
+
+                Intent i = new Intent(DetermineRelevantVariablesActivity.this,InputActivity.class);
+                startActivity(i);
+            }
+        });
+    }
+}

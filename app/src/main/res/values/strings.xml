@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Kinematics Calculator</string>
+    <string name="start">Start</string>
+    <string name="welcome_message">Welcome to the Kinematics Calculator! Press Start to begin.</string>
+    <string name="inital_velocity_vo">inital velocity (vo)</string>
+    <string name="final_velocity_v">final velocity (v)</string>
+    <string name="acceleration_a">acceleration (a)</string>
+    <string name="time_t">time (t)</string>
+    <string name="displacement_x">displacement (x)</string>
+    <string name="select_variables">Select which variables you already know the values for:</string>
+    <string name="next">next</string>
+    <string name="title_activity_output">OutputActivity</string>
+</resources>
