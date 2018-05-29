@@ -117,9 +117,12 @@ public class CalculatorData {
                     getKinematicVariable("s").setValue((Math.pow(getKinematicVariable("v").getValue(),2)-Math.pow(getKinematicVariable("vo").getValue(),2))/(2*getKinematicVariable("a").getValue()));
                 }
                 break;
-            case 3:
-                if(!getKinematicVariable("s").getHasValue()){
-                    getKinematicVariable()
+            case 3://s=(v+vo)/2*t
+                //case s does not have value will never occur this far in the program
+                //case v does not have value will never occur this far in the program
+                //case t does not have value will never occur this far in the program
+                if(!getKinematicVariable("v").getHasValue()){
+                    getKinematicVariable("v").setValue(getKinematicVariable("s").getValue()*2/getKinematicVariable("t").getValue()-getKinematicVariable("vo").getValue());
                 }
                 break;
         }
