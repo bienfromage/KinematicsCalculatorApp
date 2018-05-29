@@ -40,6 +40,7 @@ public class KinematicVariable {
     }
 
     public double getValue(){
+        setHasValue(true);
         return value;
     }
 
