@@ -21,6 +21,7 @@ public class KinematicVariable {
 
     public void setValue(double val){
         value = val;
+        setHasValue(true);
     }
 
     public void setGetValue(boolean val){
@@ -40,7 +41,6 @@ public class KinematicVariable {
     }
 
     public double getValue(){
-        setHasValue(true);
         return value;
     }
 

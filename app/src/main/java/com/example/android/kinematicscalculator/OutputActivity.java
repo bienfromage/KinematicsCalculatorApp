@@ -21,6 +21,7 @@ public class OutputActivity extends AppCompatActivity {
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                CalculatorData.initMap();
                 startActivity(new Intent(OutputActivity.this,StartActivity.class));
             }
         });
