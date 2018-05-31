@@ -32,12 +32,9 @@ public class KinematicVariable {
         hasValue=val;
     }
 
-    public void setHasAltValue(boolean val){
-        hasAltValue=val;
-    }
-
     public void setAltValue(double val){
         altValue = val;
+        hasAltValue = true;
     }
 
     public double getValue(){

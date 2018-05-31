@@ -86,6 +86,8 @@ public class CalculatorData {
                     getKinematicVariable("a").setValue((getKinematicVariable("v").getValue()-getKinematicVariable("vo").getValue())/getKinematicVariable("t").getValue());
                 }else{
                     getKinematicVariable("t").setValue((getKinematicVariable("v").getValue()-getKinematicVariable("vo").getValue())/getKinematicVariable("a").getValue());
+                    if(getKinematicVariable("v").getHasAltValue())
+                        getKinematicVariable("t").setAltValue((getKinematicVariable("v").getAltValue()-getKinematicVariable("vo").getValue())/getKinematicVariable("a").getValue());
                 }
                 break;
             case 1:
@@ -94,28 +96,20 @@ public class CalculatorData {
                 }else if(!getKinematicVariable("vo").getHasValue()){
                     getKinematicVariable("vo").setValue((getKinematicVariable("s").getValue()-0.5*getKinematicVariable("a").getValue()*Math.pow(getKinematicVariable("a").getValue(),2))/getKinematicVariable("t").getValue());
                 }else if(!getKinematicVariable("t").getHasValue()){
-                    double a = 0.5*getKinematicVariable("a").getValue();
-                    double b = getKinematicVariable("vo").getValue();
-                    double c = getKinematicVariable("s").getValue();
-                    double solA=(-b+Math.sqrt(Math.pow(b,2)-4*a*c))/(2*a);
-                    double solB=(-b-Math.sqrt(Math.pow(b,2)-4*a*c))/(2*a);
-                    getKinematicVariable("t").setValue(solA);
-                    getKinematicVariable("t").setHasAltValue(true);
-                    getKinematicVariable("t").setAltValue(solB);
+                    getKinematicVariable("v").setValue(Math.sqrt(Math.pow(getKinematicVariable("vo").getValue(),2)+2*getKinematicVariable("a").getValue()*getKinematicVariable("s").getValue()));
+                    getKinematicVariable("v").setAltValue(-Math.sqrt(Math.pow(getKinematicVariable("vo").getValue(),2)+2*getKinematicVariable("a").getValue()*getKinematicVariable("s").getValue()));
                 }else{
                     getKinematicVariable("a").setValue((getKinematicVariable("s").getValue()-getKinematicVariable("vo").getValue()*getKinematicVariable("t").getValue())/(0.5*Math.pow(getKinematicVariable("t").getValue(),2)));
                 }
                 break;
             case 2:
-                if(!getKinematicVariable("v").getHasValue()){
-                    getKinematicVariable("v").setValue(Math.sqrt(Math.pow(getKinematicVariable("vo").getValue(),2)+2*getKinematicVariable("a").getValue()*getKinematicVariable("s").getValue()));
-                }else if(!getKinematicVariable("vo").getHasValue()){
+                //case v does not have value will never occur this far into the program
+                if(!getKinematicVariable("vo").getHasValue()){
                     getKinematicVariable("vo").setValue(Math.sqrt(Math.pow(getKinematicVariable("v").getValue(),2)-2*getKinematicVariable("a").getValue()*getKinematicVariable("s").getValue()));
                 }else if(!getKinematicVariable("a").getHasValue()){
                     getKinematicVariable("a").setValue((Math.pow(getKinematicVariable("v").getValue(),2)-Math.pow(getKinematicVariable("vo").getValue(),2))/(2*getKinematicVariable("s").getValue()));
-                }else{
-                    getKinematicVariable("s").setValue((Math.pow(getKinematicVariable("v").getValue(),2)-Math.pow(getKinematicVariable("vo").getValue(),2))/(2*getKinematicVariable("a").getValue()));
                 }
+                //case s does not have value will never occur this far into the program
                 break;
             case 3://s=(v+vo)/2*t
                 //case s does not have value will never occur this far in the program
@@ -132,7 +126,10 @@ public class CalculatorData {
         String total = "";
 
         for(Map.Entry<String,KinematicVariable> entry: hmap.entrySet()){
-            total+=entry.getKey()+": "+entry.getValue().getValue()+"\n";
+            total+=entry.getKey()+": "+entry.getValue().getValue();
+            if(entry.getValue().getHasAltValue())
+                total+=" or "+entry.getValue().getAltValue();
+            total+="\n";
         }
 
         return total;
