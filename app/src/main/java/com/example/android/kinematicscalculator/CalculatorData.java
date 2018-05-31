@@ -115,8 +115,8 @@ public class CalculatorData {
                 //case s does not have value will never occur this far in the program
                 //case v does not have value will never occur this far in the program
                 //case t does not have value will never occur this far in the program
-                if(!getKinematicVariable("v").getHasValue()){
-                    getKinematicVariable("v").setValue(getKinematicVariable("s").getValue()*2/getKinematicVariable("t").getValue()-getKinematicVariable("vo").getValue());
+                if(!getKinematicVariable("vo").getHasValue()){
+                    getKinematicVariable("vo").setValue(getKinematicVariable("s").getValue()*2/getKinematicVariable("t").getValue()-getKinematicVariable("v").getValue());
                 }
                 break;
         }
