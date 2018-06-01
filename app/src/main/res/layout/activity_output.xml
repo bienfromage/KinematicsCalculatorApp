@@ -9,6 +9,13 @@
     tools:context="com.example.android.kinematicscalculator.OutputActivity">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/answers"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center"/>
+
+    <TextView
         android:id="@+id/output"
         android:gravity="center"
         android:layout_width="wrap_content"

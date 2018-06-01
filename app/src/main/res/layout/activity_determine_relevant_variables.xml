@@ -9,7 +9,7 @@
     tools:context="com.example.android.kinematicscalculator.DetermineRelevantVariablesActivity">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/select_variables"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
