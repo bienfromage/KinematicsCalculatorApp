@@ -14,13 +14,6 @@ public class StartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //wait 1 second before switching screen (to display splash)
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        }catch(InterruptedException e){
-            Log.e("SPLASH_ERROR","Problem with splash screen pause: "+e);
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 

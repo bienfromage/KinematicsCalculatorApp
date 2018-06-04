@@ -3,7 +3,9 @@ package com.example.android.kinematicscalculator;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -34,9 +36,22 @@ public class InputActivity extends AppCompatActivity {
                 kinematicVariable.setValue(value);
                 kinematicVariable.setGetValue(false);
                 kinematicVariable.setHasValue(true);
+                inputBox.setText("");
                 updateUI();
             }
         });
+
+        inputBox.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    nextButton.performClick();
+                    return true;
+                }
+                return false;
+            }
+        });
+
         updateUI();
     }
 
