@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Kinematics</string>
-    <string name="start">Start</string>
-    <string name="welcome_message">Welcome to the Kinematics Calculator! Press Start to begin.</string>
+    <string name="start">go</string>
+    <string name="welcome_message">To begin, choose what type of calculation you want to do.</string>
     <string name="inital_velocity_vo">initial velocity (vo)</string>
     <string name="final_velocity_v">final velocity (v)</string>
     <string name="acceleration_a">acceleration (a)</string>
@@ -12,4 +12,10 @@
     <string name="title_activity_output">OutputActivity</string>
     <string name="restart">restart</string>
     <string name="answers">Answers</string>
+
+    <string-array name="calculation_type_array">
+        <item>1D Kinematics</item>
+        <item>2D Kinematics - enter vectors</item>
+        <item>2D Kinematics - enter x and y coordinates</item>
+    </string-array>
 </resources>

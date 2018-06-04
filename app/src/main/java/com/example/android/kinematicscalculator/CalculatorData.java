@@ -1,5 +1,7 @@
 package com.example.android.kinematicscalculator;
 
+import android.content.Context;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +10,11 @@ import java.util.Map;
  */
 
 public class CalculatorData {
+    private final static int ONE_DIMENSIONAL = 0;
+    private final static int TWO_DIMENSIONAL_VECTOR = 1;
+    private final static int TWO_DIMENSIONAL_COMPONENT = 2;
+    private static int entryType;
+
     private static HashMap<String, KinematicVariable> hmap = new HashMap<>(5);
 
     //set up physics variables
@@ -29,6 +36,17 @@ public class CalculatorData {
                 return entry.getKey();
         }
         return null;
+    }
+
+    public static void setEntryType(Context context,String choice){
+       String[] equationArr = context.getResources().getStringArray(R.array.calculation_type_array);
+       if(choice.equals(equationArr[0])){
+           entryType = ONE_DIMENSIONAL;
+       }else if(choice.equals(equationArr[1])){
+           entryType = TWO_DIMENSIONAL_VECTOR;
+       }else{
+           entryType = TWO_DIMENSIONAL_VECTOR;
+       }
     }
 
     public static int chooseEquation(){
