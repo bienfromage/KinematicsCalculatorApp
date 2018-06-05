@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 public class DetermineRelevantVariablesActivity extends AppCompatActivity {
 
@@ -35,8 +36,14 @@ public class DetermineRelevantVariablesActivity extends AppCompatActivity {
                 if(checkBox.isChecked())
                     CalculatorData.getKinematicVariable("s").setGetValue(true);
 
-                Intent i = new Intent(DetermineRelevantVariablesActivity.this,InputActivity.class);
-                startActivity(i);
+                if(CalculatorData.sum() < 3){
+                    Toast.makeText(DetermineRelevantVariablesActivity.this, "Whoops! Looks like you enterd fewer than three variables.", Toast.LENGTH_LONG).show();
+                }else{
+                    if(CalculatorData.getEntryType() == 0)
+                        startActivity(new Intent(DetermineRelevantVariablesActivity.this, InputActivity.class));
+                    else
+                        startActivity(new Intent(DetermineRelevantVariablesActivity.this, InputAngleActivity.class));
+                }
             }
         });
     }

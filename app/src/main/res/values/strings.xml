@@ -12,6 +12,8 @@
     <string name="title_activity_output">OutputActivity</string>
     <string name="restart">restart</string>
     <string name="answers">Answers</string>
+    <string name="magnitude">magnitude</string>
+    <string name="angle">angle</string>
 
     <string-array name="calculation_type_array">
         <item>1D Kinematics</item>

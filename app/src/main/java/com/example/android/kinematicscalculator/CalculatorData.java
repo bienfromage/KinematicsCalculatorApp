@@ -19,12 +19,20 @@ public class CalculatorData {
     private static HashMap<String, KinematicVariable> hmap = new HashMap<>(5);
 
     //set up physics variables
-    public static void initMap(){
-        hmap.put("v",new KinematicVariable());
-        hmap.put("vo",new KinematicVariable());
-        hmap.put("a",new KinematicVariable());
-        hmap.put("t",new KinematicVariable());
-        hmap.put("s",new KinematicVariable());
+    public static void initMap(int type){
+        if(type == ONE_DIMENSIONAL) {
+            hmap.put("v", new KinematicVariable());
+            hmap.put("vo", new KinematicVariable());
+            hmap.put("a", new KinematicVariable());
+            hmap.put("t", new KinematicVariable());
+            hmap.put("s", new KinematicVariable());
+        }else{
+            hmap.put("v", new KinematicVariable2D());
+            hmap.put("vo", new KinematicVariable2D());
+            hmap.put("a", new KinematicVariable2D());
+            hmap.put("t", new KinematicVariable2D());
+            hmap.put("s", new KinematicVariable2D());
+        }
     }
 
     public static KinematicVariable getKinematicVariable(String kinematicVariableId){
@@ -48,6 +56,7 @@ public class CalculatorData {
        }else{
            entryType = TWO_DIMENSIONAL_COMPONENT;
        }
+       initMap(entryType);
     }
 
     public static int chooseEquation(){
@@ -160,5 +169,15 @@ public class CalculatorData {
 
     public static int getEntryType(){
         return entryType;
+    }
+
+    public static int sum(){
+        int total = 0;
+        for(Map.Entry<String,KinematicVariable> entry: hmap.entrySet()){
+            if(entry.getValue().getGetValue()) {
+                total++;
+            }
+        }
+        return total;
     }
 }

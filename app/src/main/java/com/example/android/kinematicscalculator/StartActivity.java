@@ -20,9 +20,6 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        //set up hashmap to hold physics variables
-        CalculatorData.initMap();
-
         spinner=findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.calculation_type_array,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -35,8 +32,7 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View view) {
                 CalculatorData.setEntryType(StartActivity.this,spinner.getSelectedItem().toString());
 
-                Intent i = new Intent(StartActivity.this, DetermineRelevantVariablesActivity.class);
-                startActivity(i);
+                startActivity(new Intent(StartActivity.this, DetermineRelevantVariablesActivity.class));
             }
         });
     }

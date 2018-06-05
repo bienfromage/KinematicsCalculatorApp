@@ -2,14 +2,10 @@ package com.example.android.kinematicscalculator;
 
 public class KinematicVariable2D extends KinematicVariable {
     private double angle;
-    private boolean hasAngle;
     private double altAngle;
-    private boolean hasAltAngle;
 
     public KinematicVariable2D(){
         super();
-        hasAngle = false;
-        hasAltAngle=false;
     }
 
     public void setAngle(double theAngle){
