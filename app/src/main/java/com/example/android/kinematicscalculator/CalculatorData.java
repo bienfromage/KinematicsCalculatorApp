@@ -14,6 +14,7 @@ public class CalculatorData {
     private final static int TWO_DIMENSIONAL_VECTOR = 1;
     private final static int TWO_DIMENSIONAL_COMPONENT = 2;
     private static int entryType;
+    private static boolean calcX = true;
 
     private static HashMap<String, KinematicVariable> hmap = new HashMap<>(5);
 
@@ -45,7 +46,7 @@ public class CalculatorData {
        }else if(choice.equals(equationArr[1])){
            entryType = TWO_DIMENSIONAL_VECTOR;
        }else{
-           entryType = TWO_DIMENSIONAL_VECTOR;
+           entryType = TWO_DIMENSIONAL_COMPONENT;
        }
     }
 
@@ -151,5 +152,13 @@ public class CalculatorData {
         }
 
         return total;
+    }
+
+    public static boolean getCalcX(){
+        return calcX;
+    }
+
+    public static int getEntryType(){
+        return entryType;
     }
 }

@@ -56,6 +56,7 @@ public class InputActivity extends AppCompatActivity {
     }
 
     private void updateUI(){
+        if()
         String nextKey = CalculatorData.getNextKey();
         if(nextKey == null){
             startActivity(new Intent(InputActivity.this,OutputActivity.class));

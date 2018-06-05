@@ -23,21 +23,21 @@ public class StartActivity extends AppCompatActivity {
         //set up hashmap to hold physics variables
         CalculatorData.initMap();
 
+        spinner=findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.calculation_type_array,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
         //on start button press, open next screen
         startButton=findViewById(R.id.startButton);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                CalculatorData.setEntryType(StartActivity.this,spinner.getSelectedItem().toString());
 
                 Intent i = new Intent(StartActivity.this, DetermineRelevantVariablesActivity.class);
                 startActivity(i);
             }
         });
-
-        spinner=findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.calculation_type_array,android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
     }
 }
