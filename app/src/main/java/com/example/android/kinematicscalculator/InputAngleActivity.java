@@ -25,7 +25,7 @@ public class InputAngleActivity extends AppCompatActivity {
         requestText = findViewById(R.id.enterValueTextViewAngle);
         inputBox = findViewById(R.id.inputBoxMagnitude);
         angleBox = findViewById(R.id.inputAngleBox);
-        nextButton=findViewById(R.id.nextInputButton);
+        nextButton=findViewById(R.id.nextInputButtonAngle);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,8 +39,12 @@ public class InputAngleActivity extends AppCompatActivity {
                 kinematicVariable.setValue(value);
                 ((KinematicVariable2D)kinematicVariable).setAngle(angle);
                 kinematicVariable.setGetValue(false);
+                kinematicVariable.setHasValue(true);
+                ((KinematicVariable2D)kinematicVariable).componentCalculate();
                 inputBox.setText("");
                 angleBox.setText("");
+                angleBox.requestFocus();
+
                 updateUI();
             }
         });

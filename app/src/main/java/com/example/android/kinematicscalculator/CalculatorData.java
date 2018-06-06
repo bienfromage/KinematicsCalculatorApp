@@ -104,35 +104,38 @@ public class CalculatorData {
         switch(equationId){
             case 0:
                 if(!getKinematicVariable("v").getHasValue()){
-                    getKinematicVariable("v").setValue(getKinematicVariable("vo").getValue()+getKinematicVariable("a").getValue()*getKinematicVariable("t").getValue());
+                    getKinematicVariable("v").setCalculatedValue(getKinematicVariable("vo").getValue()+getKinematicVariable("a").getValue()*getKinematicVariable("t").getValue());
                 }else if(!getKinematicVariable("vo").getHasValue()){
-                    getKinematicVariable("vo").setValue(getKinematicVariable("v").getValue()-getKinematicVariable("a").getValue()*getKinematicVariable("t").getValue());
+                    getKinematicVariable("vo").setCalculatedValue(getKinematicVariable("v").getValue()-getKinematicVariable("a").getValue()*getKinematicVariable("t").getValue());
                 }else if(!getKinematicVariable("a").getHasValue()){
-                    getKinematicVariable("a").setValue((getKinematicVariable("v").getValue()-getKinematicVariable("vo").getValue())/getKinematicVariable("t").getValue());
+                    getKinematicVariable("a").setCalculatedValue((getKinematicVariable("v").getValue()-getKinematicVariable("vo").getValue())/getKinematicVariable("t").getValue());
                 }else{
-                    getKinematicVariable("t").setValue((getKinematicVariable("v").getValue()-getKinematicVariable("vo").getValue())/getKinematicVariable("a").getValue());
+                    getKinematicVariable("t").setCalculatedValue((getKinematicVariable("v").getValue()-getKinematicVariable("vo").getValue())/getKinematicVariable("a").getValue());
                     if(getKinematicVariable("v").getHasAltValue())
                         getKinematicVariable("t").setAltValue((getKinematicVariable("v").getAltValue()-getKinematicVariable("vo").getValue())/getKinematicVariable("a").getValue());
+                    else if(getKinematicVariable("vo").getHasAltValue())
+                        getKinematicVariable("t").setCalculatedValue((getKinematicVariable("v").getValue()-getKinematicVariable("vo").getAltValue())/getKinematicVariable("a").getValue());
                 }
                 break;
             case 1:
                 if(!getKinematicVariable("s").getHasValue()){
-                    getKinematicVariable("s").setValue(getKinematicVariable("vo").getValue()*getKinematicVariable("t").getValue()+0.5*getKinematicVariable("a").getValue()*Math.pow(getKinematicVariable("t").getValue(),2));
+                    getKinematicVariable("s").setCalculatedValue(getKinematicVariable("vo").getValue()*getKinematicVariable("t").getValue()+0.5*getKinematicVariable("a").getValue()*Math.pow(getKinematicVariable("t").getValue(),2));
                 }else if(!getKinematicVariable("vo").getHasValue()){
-                    getKinematicVariable("vo").setValue((getKinematicVariable("s").getValue()-0.5*getKinematicVariable("a").getValue()*Math.pow(getKinematicVariable("a").getValue(),2))/getKinematicVariable("t").getValue());
+                    getKinematicVariable("vo").setCalculatedValue((getKinematicVariable("s").getValue()-0.5*getKinematicVariable("a").getValue()*Math.pow(getKinematicVariable("a").getValue(),2))/getKinematicVariable("t").getValue());
                 }else if(!getKinematicVariable("t").getHasValue()){
-                    getKinematicVariable("v").setValue(Math.sqrt(Math.pow(getKinematicVariable("vo").getValue(),2)+2*getKinematicVariable("a").getValue()*getKinematicVariable("s").getValue()));
+                    getKinematicVariable("v").setCalculatedValue(Math.sqrt(Math.pow(getKinematicVariable("vo").getValue(),2)+2*getKinematicVariable("a").getValue()*getKinematicVariable("s").getValue()));
                     getKinematicVariable("v").setAltValue(-Math.sqrt(Math.pow(getKinematicVariable("vo").getValue(),2)+2*getKinematicVariable("a").getValue()*getKinematicVariable("s").getValue()));
                 }else{
-                    getKinematicVariable("a").setValue((getKinematicVariable("s").getValue()-getKinematicVariable("vo").getValue()*getKinematicVariable("t").getValue())/(0.5*Math.pow(getKinematicVariable("t").getValue(),2)));
+                    getKinematicVariable("a").setCalculatedValue((getKinematicVariable("s").getValue()-getKinematicVariable("vo").getValue()*getKinematicVariable("t").getValue())/(0.5*Math.pow(getKinematicVariable("t").getValue(),2)));
                 }
                 break;
             case 2:
                 //case v does not have value will never occur this far into the program
                 if(!getKinematicVariable("vo").getHasValue()){
-                    getKinematicVariable("vo").setValue(Math.sqrt(Math.pow(getKinematicVariable("v").getValue(),2)-2*getKinematicVariable("a").getValue()*getKinematicVariable("s").getValue()));
+                    getKinematicVariable("vo").setCalculatedValue(Math.sqrt(Math.pow(getKinematicVariable("v").getValue(),2)-2*getKinematicVariable("a").getValue()*getKinematicVariable("s").getValue()));
+                    getKinematicVariable("vo").setAltValue(-Math.sqrt(Math.pow(getKinematicVariable("v").getValue(),2)-2*getKinematicVariable("a").getValue()*getKinematicVariable("s").getValue()));
                 }else if(!getKinematicVariable("a").getHasValue()){
-                    getKinematicVariable("a").setValue((Math.pow(getKinematicVariable("v").getValue(),2)-Math.pow(getKinematicVariable("vo").getValue(),2))/(2*getKinematicVariable("s").getValue()));
+                    getKinematicVariable("a").setCalculatedValue((Math.pow(getKinematicVariable("v").getValue(),2)-Math.pow(getKinematicVariable("vo").getValue(),2))/(2*getKinematicVariable("s").getValue()));
                 }
                 //case s does not have value will never occur this far into the program
                 break;
@@ -141,7 +144,7 @@ public class CalculatorData {
                 //case v does not have value will never occur this far in the program
                 //case t does not have value will never occur this far in the program
                 if(!getKinematicVariable("vo").getHasValue()){
-                    getKinematicVariable("vo").setValue(getKinematicVariable("s").getValue()*2/getKinematicVariable("t").getValue()-getKinematicVariable("v").getValue());
+                    getKinematicVariable("vo").setCalculatedValue(getKinematicVariable("s").getValue()*2/getKinematicVariable("t").getValue()-getKinematicVariable("v").getValue());
                 }
                 break;
         }
@@ -150,11 +153,20 @@ public class CalculatorData {
     public static String getOutput(){
         String total = "";
 
-        for(Map.Entry<String,KinematicVariable> entry: hmap.entrySet()){
-            total+=entry.getKey()+": "+entry.getValue().getValue();
-            if(entry.getValue().getHasAltValue())
-                total+=" or "+entry.getValue().getAltValue();
-            total+="\n";
+        if(entryType==ONE_DIMENSIONAL) {
+            for (Map.Entry<String, KinematicVariable> entry : hmap.entrySet()) {
+                total += entry.getKey() + ": " + entry.getValue().getValue();
+                if (entry.getValue().getHasAltValue())
+                    total += " or " + entry.getValue().getAltValue();
+                total += "\n";
+            }
+        }else{
+            for (Map.Entry<String, KinematicVariable> entry : hmap.entrySet()) {
+                total += entry.getKey() + ": " + entry.getValue().getValue()+" at " + (((KinematicVariable2D) entry.getValue()).getAngle()*180/Math.PI)+" degrees";
+                if (entry.getValue().getHasAltValue())
+                    total += " or " + entry.getValue().getAltValue()+" at " + (((KinematicVariable2D) entry).getAltAngle()*180/Math.PI)+" degrees";
+                total += "\n";
+            }
         }
 
         return total;

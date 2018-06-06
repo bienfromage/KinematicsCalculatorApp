@@ -23,6 +23,7 @@
 
     <EditText
         android:id="@+id/inputAngleBox"
+        android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/angle"/>

@@ -47,7 +47,8 @@ public class KinematicVariable2D extends KinematicVariable {
             x = val;
         }else {
             y = val;
-            super.setHasValue(true);
+            setHasValue(true);
+            calculate();
         }
         CalculatorData.toggleCalcX();
     }
@@ -58,6 +59,22 @@ public class KinematicVariable2D extends KinematicVariable {
             altX = val;
         }else{
             altY = val;
+            altCalculate();
         }
+    }
+
+    public void calculate(){
+        setValue(Math.sqrt(Math.pow(x,2)+Math.pow(y,2)));
+        setAngle(Math.atan2(y,x));
+    }
+
+    public void altCalculate(){
+        setAltValue(Math.sqrt(Math.pow(altX,2)+Math.pow(altY,2)));
+        altAngle=Math.atan2(altY,altX);
+    }
+
+    public void componentCalculate(){
+        x=getValue()*Math.cos(angle);
+        y=getValue()*Math.sin(angle);
     }
 }
