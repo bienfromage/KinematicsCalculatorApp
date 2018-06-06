@@ -10,9 +10,8 @@ import java.util.Map;
  */
 
 public class CalculatorData {
-    private final static int ONE_DIMENSIONAL = 0;
-    private final static int TWO_DIMENSIONAL_VECTOR = 1;
-    private final static int TWO_DIMENSIONAL_COMPONENT = 2;
+    public final static int ONE_DIMENSIONAL = 0;
+    public final static int TWO_DIMENSIONAL_VECTOR = 1;
     private static int entryType;
     private static boolean calcX = true;
 
@@ -53,8 +52,6 @@ public class CalculatorData {
            entryType = ONE_DIMENSIONAL;
        }else if(choice.equals(equationArr[1])){
            entryType = TWO_DIMENSIONAL_VECTOR;
-       }else{
-           entryType = TWO_DIMENSIONAL_COMPONENT;
        }
        initMap(entryType);
     }
@@ -179,5 +176,9 @@ public class CalculatorData {
             }
         }
         return total;
+    }
+
+    public static void toggleCalcX(){
+        calcX = !calcX;
     }
 }

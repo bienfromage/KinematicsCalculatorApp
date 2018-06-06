@@ -24,6 +24,10 @@ public class KinematicVariable {
         setHasValue(true);
     }
 
+    public void setCalculatedValue(double val){
+        setValue(val);
+    }
+
     public void setGetValue(boolean val){
         getValue = val;
     }
