@@ -162,9 +162,9 @@ public class CalculatorData {
             }
         }else{
             for (Map.Entry<String, KinematicVariable> entry : hmap.entrySet()) {
-                total += entry.getKey() + ": " + entry.getValue().getValue()+" at " + (((KinematicVariable2D) entry.getValue()).getAngle()*180/Math.PI)+" degrees";
+                total += entry.getKey() + ": " + ((KinematicVariable2D)entry.getValue()).getFinalValue()+" at " + (((KinematicVariable2D) entry.getValue()).getAngle()*180/Math.PI)+" degrees";
                 if (entry.getValue().getHasAltValue())
-                    total += " or " + entry.getValue().getAltValue()+" at " + (((KinematicVariable2D) entry).getAltAngle()*180/Math.PI)+" degrees";
+                    total += " or " + ((KinematicVariable2D)entry.getValue()).getFinalAltValue()+" at " + (((KinematicVariable2D) entry).getAltAngle()*180/Math.PI)+" degrees";
                 total += "\n";
             }
         }

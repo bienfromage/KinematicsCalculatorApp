@@ -37,13 +37,12 @@ public class InputAngleActivity extends AppCompatActivity {
                 KinematicVariable kinematicVariable =
                         CalculatorData.getKinematicVariable(currentInputKinematicVariable);
                 kinematicVariable.setValue(value);
-                ((KinematicVariable2D)kinematicVariable).setAngle(angle);
+                ((KinematicVariable2D)kinematicVariable).setAngle(angle*Math.PI/180);
                 kinematicVariable.setGetValue(false);
-                kinematicVariable.setHasValue(true);
                 ((KinematicVariable2D)kinematicVariable).componentCalculate();
                 inputBox.setText("");
                 angleBox.setText("");
-                angleBox.requestFocus();
+                inputBox.requestFocus();
 
                 updateUI();
             }

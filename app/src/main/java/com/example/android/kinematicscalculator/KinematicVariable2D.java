@@ -13,7 +13,7 @@ public class KinematicVariable2D extends KinematicVariable {
     }
 
     public void setAngle(double theAngle){
-        angle=theAngle*Math.PI/180;
+        angle=theAngle;
     }
 
     public double getAngle(){
@@ -22,6 +22,14 @@ public class KinematicVariable2D extends KinematicVariable {
 
     public double getAltAngle(){
         return altAngle;
+    }
+
+    public double getFinalValue(){
+        return super.getValue();
+    }
+
+    public double getFinalAltValue(){
+        return super.getAltValue();
     }
 
     @Override
@@ -74,7 +82,7 @@ public class KinematicVariable2D extends KinematicVariable {
     }
 
     public void componentCalculate(){
-        x=getValue()*Math.cos(angle);
-        y=getValue()*Math.sin(angle);
+        x=super.getValue()*Math.cos(angle);
+        y=super.getValue()*Math.sin(angle);
     }
 }
