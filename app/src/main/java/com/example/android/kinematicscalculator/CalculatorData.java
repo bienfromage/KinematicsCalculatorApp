@@ -5,10 +5,6 @@ import android.content.Context;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by traweeka18 on 5/21/2018.
- */
-
 public class CalculatorData {
     public final static int ONE_DIMENSIONAL = 0;
     public final static int TWO_DIMENSIONAL_VECTOR = 1;
@@ -164,7 +160,7 @@ public class CalculatorData {
             for (Map.Entry<String, KinematicVariable> entry : hmap.entrySet()) {
                 total += entry.getKey() + ": " + ((KinematicVariable2D)entry.getValue()).getFinalValue()+" at " + (((KinematicVariable2D) entry.getValue()).getAngle()*180/Math.PI)+" degrees";
                 if (entry.getValue().getHasAltValue())
-                    total += " or " + ((KinematicVariable2D)entry.getValue()).getFinalAltValue()+" at " + (((KinematicVariable2D) entry).getAltAngle()*180/Math.PI)+" degrees";
+                    total += " or " + ((KinematicVariable2D)entry.getValue()).getFinalAltValue()+" at " + (((KinematicVariable2D) entry.getValue()).getAltAngle()*180/Math.PI)+" degrees";
                 total += "\n";
             }
         }

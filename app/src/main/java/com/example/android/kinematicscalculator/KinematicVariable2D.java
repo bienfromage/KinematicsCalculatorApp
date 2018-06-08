@@ -65,9 +65,9 @@ public class KinematicVariable2D extends KinematicVariable {
     public void setAltValue(double val){
         if(CalculatorData.getCalcX()){
             altX = val;
+            altCalculate();
         }else{
             altY = val;
-            altCalculate();
         }
     }
 
@@ -77,7 +77,7 @@ public class KinematicVariable2D extends KinematicVariable {
     }
 
     public void altCalculate(){
-        setAltValue(Math.sqrt(Math.pow(altX,2)+Math.pow(altY,2)));
+        super.setAltValue(Math.sqrt(Math.pow(altX,2)+Math.pow(altY,2)));
         altAngle=Math.atan2(altY,altX);
     }
 

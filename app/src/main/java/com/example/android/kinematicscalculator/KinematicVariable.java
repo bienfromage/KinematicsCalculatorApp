@@ -41,6 +41,10 @@ public class KinematicVariable {
         hasAltValue = true;
     }
 
+    public void setHasAltValue(){
+        hasAltValue=true;
+    }
+
     public double getValue(){
         return value;
     }
