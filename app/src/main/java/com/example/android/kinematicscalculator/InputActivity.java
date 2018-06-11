@@ -57,9 +57,11 @@ public class InputActivity extends AppCompatActivity {
         String nextKey = CalculatorData.getNextKey();
         if(nextKey == null){
             startActivity(new Intent(InputActivity.this,OutputActivity.class));
-        }else{
+        }else if(CalculatorData.getEntryType() == CalculatorData.ONE_DIMENSIONAL || nextKey.equals("t")){
             currentInputKinematicVariable = nextKey;
             requestText.setText("Enter the value of "+nextKey);
+        }else{
+            startActivity(new Intent(this,InputAngleActivity.class));
         }
     }
 }

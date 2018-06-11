@@ -24,8 +24,8 @@ public class CalculatorData {
         }else{
             hmap.put("v", new KinematicVariable2D());
             hmap.put("vo", new KinematicVariable2D());
+            hmap.put("t", new KinematicVariable());
             hmap.put("a", new KinematicVariable2D());
-            hmap.put("t", new KinematicVariable2D());
             hmap.put("s", new KinematicVariable2D());
         }
     }
@@ -149,15 +149,13 @@ public class CalculatorData {
     public static String getOutput(){
         String total = "";
 
-        if(entryType==ONE_DIMENSIONAL) {
-            for (Map.Entry<String, KinematicVariable> entry : hmap.entrySet()) {
+        for (Map.Entry<String, KinematicVariable> entry : hmap.entrySet()) {
+            if(entryType == ONE_DIMENSIONAL || entry.getKey().equals("t")) {
                 total += entry.getKey() + ": " + entry.getValue().getValue();
                 if (entry.getValue().getHasAltValue())
                     total += " or " + entry.getValue().getAltValue();
                 total += "\n";
-            }
-        }else{
-            for (Map.Entry<String, KinematicVariable> entry : hmap.entrySet()) {
+            }else{
                 total += entry.getKey() + ": " + ((KinematicVariable2D)entry.getValue()).getFinalValue()+" at " + (((KinematicVariable2D) entry.getValue()).getAngle()*180/Math.PI)+" degrees";
                 if (entry.getValue().getHasAltValue())
                     total += " or " + ((KinematicVariable2D)entry.getValue()).getFinalAltValue()+" at " + (((KinematicVariable2D) entry.getValue()).getAltAngle()*180/Math.PI)+" degrees";

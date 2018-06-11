@@ -75,8 +75,11 @@ public class InputAngleActivity extends AppCompatActivity {
 
     private void updateUI(){
         String nextKey = CalculatorData.getNextKey();
+
         if(nextKey == null){
             startActivity(new Intent(InputAngleActivity.this,OutputActivity.class));
+        }else if(nextKey.equals("t")){
+            startActivity(new Intent(this,InputActivity.class));
         }else{
             currentInputKinematicVariable = nextKey;
             requestText.setText("Enter the value of "+nextKey+" and its corresponding angle");
