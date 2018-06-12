@@ -9,6 +9,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class InputActivity extends AppCompatActivity {
     private String currentInputKinematicVariable;
@@ -27,15 +28,20 @@ public class InputActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Double value = Double.parseDouble(inputBox.getText().toString());
+                String input = inputBox.getText().toString();
 
-                KinematicVariable kinematicVariable =
-                        CalculatorData.getKinematicVariable(currentInputKinematicVariable);
-                kinematicVariable.setValue(value);
-                kinematicVariable.setGetValue(false);
-                kinematicVariable.setHasValue(true);
-                inputBox.setText("");
-                updateUI();
+                if(input.equals("")){
+                    Toast.makeText(InputActivity.this,"Please enter a value",Toast.LENGTH_SHORT).show();
+                }else {
+                    Double value = Double.parseDouble(input);
+                    KinematicVariable kinematicVariable =
+                            CalculatorData.getKinematicVariable(currentInputKinematicVariable);
+                    kinematicVariable.setValue(value);
+                    kinematicVariable.setGetValue(false);
+                    kinematicVariable.setHasValue(true);
+                    inputBox.setText("");
+                    updateUI();
+                }
             }
         });
 
@@ -63,5 +69,7 @@ public class InputActivity extends AppCompatActivity {
         }else{
             startActivity(new Intent(this,InputAngleActivity.class));
         }
+
+        inputBox.requestFocus();
     }
 }

@@ -37,7 +37,7 @@ public class DetermineRelevantVariablesActivity extends AppCompatActivity {
                     CalculatorData.getKinematicVariable("s").setGetValue(true);
 
                 if(CalculatorData.sum() < 3){
-                    Toast.makeText(DetermineRelevantVariablesActivity.this, "Whoops! Looks like you enterd fewer than three variables.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(DetermineRelevantVariablesActivity.this, "Whoops! Looks like you enterd fewer than three variables. You must enter at least three variables for the calculator to work.", Toast.LENGTH_LONG).show();
                 }else{
                     if(CalculatorData.getEntryType() == 0)
                         startActivity(new Intent(DetermineRelevantVariablesActivity.this, InputActivity.class));

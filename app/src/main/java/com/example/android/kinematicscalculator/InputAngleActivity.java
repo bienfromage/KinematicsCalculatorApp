@@ -9,6 +9,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class InputAngleActivity extends AppCompatActivity {
     private String currentInputKinematicVariable;
@@ -30,21 +31,30 @@ public class InputAngleActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Double value = Double.parseDouble(inputBox.getText().toString());
+                String input = inputBox.getText().toString();
+                String angleInput = angleBox.getText().toString();
 
-                Double angle = Double.parseDouble(angleBox.getText().toString());
+                if(input.equals(""))
+                    Toast.makeText(InputAngleActivity.this,"Please input a value",Toast.LENGTH_SHORT).show();
+                else if(angleInput.equals(""))
+                    Toast.makeText(InputAngleActivity.this,"Please input an angle",Toast.LENGTH_SHORT).show();
+                else {
+                    Double value = Double.parseDouble(input);
 
-                KinematicVariable kinematicVariable =
-                        CalculatorData.getKinematicVariable(currentInputKinematicVariable);
-                kinematicVariable.setValue(value);
-                ((KinematicVariable2D)kinematicVariable).setAngle(angle*Math.PI/180);
-                kinematicVariable.setGetValue(false);
-                ((KinematicVariable2D)kinematicVariable).componentCalculate();
-                inputBox.setText("");
-                angleBox.setText("");
-                inputBox.requestFocus();
+                    Double angle = Double.parseDouble(angleInput);
 
-                updateUI();
+                    KinematicVariable kinematicVariable =
+                            CalculatorData.getKinematicVariable(currentInputKinematicVariable);
+                    kinematicVariable.setValue(value);
+                    ((KinematicVariable2D) kinematicVariable).setAngle(angle * Math.PI / 180);
+                    kinematicVariable.setGetValue(false);
+                    ((KinematicVariable2D) kinematicVariable).componentCalculate();
+                    inputBox.setText("");
+                    angleBox.setText("");
+                    inputBox.requestFocus();
+
+                    updateUI();
+                }
             }
         });
 
@@ -84,5 +94,7 @@ public class InputAngleActivity extends AppCompatActivity {
             currentInputKinematicVariable = nextKey;
             requestText.setText("Enter the value of "+nextKey+" and its corresponding angle");
         }
+
+        inputBox.requestFocus();
     }
 }
