@@ -94,7 +94,5 @@ public class InputAngleActivity extends AppCompatActivity {
             currentInputKinematicVariable = nextKey;
             requestText.setText("Enter the value of "+nextKey+" and its corresponding angle");
         }
-
-        inputBox.requestFocus();
     }
 }

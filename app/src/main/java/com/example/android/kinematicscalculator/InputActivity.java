@@ -69,7 +69,5 @@ public class InputActivity extends AppCompatActivity {
         }else{
             startActivity(new Intent(this,InputAngleActivity.class));
         }
-
-        inputBox.requestFocus();
     }
 }
