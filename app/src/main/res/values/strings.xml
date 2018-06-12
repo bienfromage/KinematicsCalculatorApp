@@ -17,6 +17,6 @@
 
     <string-array name="calculation_type_array">
         <item>1D Kinematics</item>
-        <item>2D Kinematics - enter vectors</item>
+        <item>2D Kinematics</item>
     </string-array>
 </resources>
